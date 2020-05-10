@@ -46,13 +46,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Steam",  	  "Steam",       NULL,       1 << 4,       0,           0 },
-	{ "dota2",  	  "dota2",       NULL,       1 << 5,       0,           -1 },
-	{ "discord",  NULL,       "Discord",       1 << 2,       0,           -1 },
-	{ NULL,      "spterm",    NULL,       SPTAG(0),     1,           1,         0,        -1 },
-	{ NULL,      "spcalc",      NULL,       SPTAG(1),     1,           1,         0,        -1 },
+	{ "Gimp",     	NULL,       NULL,       0,            1,	0,	0,	-1	},
+	{ "Firefox", 	NULL,       NULL,       1 << 8,       0,	0,	0,	-1	},
+	{ "Steam",		"Steam", 	NULL,       1 << 4,       0,	0,	0,	0	},
+	{ "dota2",  	"dota2", 	NULL,       1 << 5,       0,	0,	0,	0	},
+	{ "discord",  	NULL,     	"Discord",  1 << 2,       0,	0,	0,	-1	},
+	{ NULL,      	"spterm", 	NULL,       SPTAG(0),     1,	1,	0,	-1	},
+	{ NULL,      	"spcalc",	NULL,       SPTAG(1),     1,	1,	0,	-1	},
 };
 
 
