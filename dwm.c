@@ -857,7 +857,7 @@ drawbar(Monitor *m)
 	Client *c;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	if (m == selmon || 1) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
 		drw_text(drw, m->ww - sw, 0, sw, bh, 0, stext, 0);
@@ -982,6 +982,10 @@ focusmon(const Arg *arg)
 	unfocus(selmon->sel, 0);
 	selmon = m;
 	focus(NULL);
+	if(selmon->sel)
+		XWarpPointer(dpy, NULL, selmon->sel->win, 0,0,0,0, selmon->sel->w/2, selmon->sel->h/2);
+	else
+		XWarpPointer(dpy, None, selmon->barwin, 0, 0, 0, 0, selmon->mw/2, selmon->mh/2);
 }
 
 void
