@@ -51,7 +51,8 @@ static const Rule rules[] = {
 	{ "Steam",  	  "Steam",       NULL,       1 << 4,       0,           0 },
 	{ "dota2",  	  "dota2",       NULL,       1 << 5,       0,           -1 },
 	{ "discord",  NULL,       "Discord",       1 << 2,       0,           -1 },
-	{ NULL,  	  NULL,       "scratchpad",       -1,       1,           -1 },
+	{ NULL,      "spterm",    NULL,       SPTAG(0),     1,           1,         0,        -1 },
+	{ NULL,      "spcalc",      NULL,       SPTAG(1),     1,           1,         0,        -1 },
 };
 
 
@@ -145,7 +146,7 @@ changevolume(const Arg *arg) {
 			//system("mpc volume +5");
 			break;
 	}
-	system("pkill -RTMIN+11 statusbar");
+	system("pkill -RTMIN+11 dwmblocks");
 }
 
 void
@@ -226,8 +227,8 @@ static Key keys[] = {
 	//{ MODKEY,						XK_a,	spawn,	{.v = pulsemixercmd} },
 	{ MODKEY|ShiftMask,				XK_a,	spawn,	SHCMD("st -e pulsemixer") },
 
-	//{ MODKEY,						XK_s,		spawn,	{.v = NULL} },*/
-	//{ MODKEY|ShiftMask,			XK_s,		spawn,	{.v = NULL} },*/
+	{ MODKEY,						XK_s,	togglescratch,		{.ui = 0} },
+	{ MODKEY|ShiftMask,				XK_s,	togglescratch,		{.ui = 1} },
 
 	{ MODKEY,						XK_d,		spawn,	{.v = dmenucmd} },
 	//{ MODKEY|ShiftMask,			XK_d,		spawn,	{.v = dmenucmd} },
