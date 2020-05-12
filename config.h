@@ -309,8 +309,8 @@ static Key keys[] = {
 	{ MODKEY,						XK_Page_Up,		changevolume,	{.i = +1} },
 	{ MODKEY,						XK_Page_Down,	changevolume,	{.i = -1} },
 
-	{ 0, 							XF86XK_MonBrightnessUp, spawn, SHCMD("xbacklight set +5")},
-	{ 0, 							XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight set -5")},
+	{ 0, 							XF86XK_MonBrightnessUp, spawn, SHCMD("xbacklight +5")},
+	{ 0, 							XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -5")},
 
 	//{ MODKEY,						XK_Insert,	spawn,	{.v = mpctoggle } },
 	//{ MODKEY|ShiftMask,				XK_Insert,	spawn,	{.v = mpcstop} },
