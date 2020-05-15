@@ -51,6 +51,7 @@ static const Rule rules[] = {
 	{ "Steam",		"Steam", 	NULL,       1 << 4,       0,	0,	0,	0	},
 	{ "dota2",  	"dota2", 	NULL,       1 << 5,       0,	0,	0,	0	},
 	{ "discord",  	NULL,     	"Discord",  1 << 2,       0,	0,	0,	-1	},
+	{ "ProtonMail Bridge",  	"protonmail-bridge",     	"ProtonMail Bridge",  0,       1,	0,	0,	-1	},
 	{ NULL,      	"spterm", 	NULL,       SPTAG(0),     1,	1,	0,	-1	},
 	{ NULL,      	"spcalc",	NULL,       SPTAG(1),     1,	1,	0,	-1	},
 };
@@ -61,6 +62,7 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -151,7 +153,7 @@ changevolume(const Arg *arg) {
 
 void
 movetomon(const Arg *arg){
-	unsigned int i;
+	unsigned int i = 0;
 	if(!selmon->sel) return;
 	for(Monitor* m = mons; m;m=m->next, i++)
 	{
