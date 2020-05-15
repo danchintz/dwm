@@ -181,6 +181,7 @@ togglefullscreen(const Arg *arg){
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenuunicode[] = { "echo /home/hintz3y/.config/emoji | dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static const char *termcwd[]  = { "samedir", NULL };
@@ -265,7 +266,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,	 			XK_x,		spawn,	SHCMD("sudo shutdown now") },
 
 	{ MODKEY,						XK_c,		spawn,	SHCMD("discord") },
-	{ MODKEY|ShiftMask,				XK_c,		spawn,	SHCMD("sudo killall discord") },
+	{ MODKEY|ShiftMask,				XK_c,		spawn,	SHCMD("sudo killall Discord") },
 
 	//Unused
 	//{ MODKEY,						XK_v,		spawn,	{.v = NULL} },
