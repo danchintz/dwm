@@ -152,6 +152,27 @@ changevolume(const Arg *arg) {
 }
 
 void
+focustomon(const Arg *arg) {
+	unsigned int i = 0;
+	for(Monitor* m = mons; m;m=m->next, i++)
+	{
+		if(i == arg->ui)
+		{
+			if(selmon->sel)
+				unfocus(selmon->sel, 0);
+			selmon = m;
+			focus(NULL);
+			if(selmon->sel)
+				XWarpPointer(dpy, NULL, selmon->sel->win, 0,0,0,0, selmon->sel->w/2, selmon->sel->h/2);
+			else
+				XWarpPointer(dpy, None, selmon->barwin, 0, 0, 0, 0, selmon->mw/2, selmon->mh/2);
+			break;
+		}
+	}
+
+}
+
+void
 movetomon(const Arg *arg){
 	unsigned int i = 0;
 	if(!selmon->sel) return;
@@ -242,7 +263,7 @@ static Key keys[] = {
 	{ MODKEY,						XK_g,		spawn,		SHCMD("steam") },
 	{ MODKEY|ShiftMask,				XK_g,		spawn,		SHCMD("sudo killall steam") },
 
-	{ MODKEY,                       XK_h,	focusmon,	{.i = -1} },
+	{ MODKEY,                       XK_h,	focustomon,	{.ui = 0} },
 	{ MODKEY|ShiftMask,				XK_h,	movetomon,	{.ui = 0} },
 
 	{ MODKEY,                       XK_j,		focusstack,	{.i = +1+2000 } },
@@ -251,7 +272,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,		focusstack,	{.i = -1+2000 } },
 	{ MODKEY|ShiftMask,             XK_k,		movestack,	{.i = -1 } },
 
-	{ MODKEY,                       XK_l,	focusmon,	{.i = +1} },
+	{ MODKEY,                       XK_l,	focustomon,	{.ui = 1} },
 	{ MODKEY|ShiftMask,				XK_l,	movetomon,	{.ui = 1} },
 
 	//{ MODKEY,						XK_i,		incnmaster,	{.i = +1 } },
