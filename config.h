@@ -198,7 +198,7 @@ static Key keys[] = {
 	{ MODKEY,						XK_w,		spawn,	SHCMD("qutebrowser") },
 	{ MODKEY|ShiftMask,				XK_w,		spawn,	SHCMD("st -e rtv") },
 
-	{ MODKEY,						XK_e,		spawn,	SHCMD("st -e neomutt; pkill -RTMIN+12 $(pidof dwmblocks)") },
+	{ MODKEY,						XK_e,		spawn,	SHCMD("st -e neomutt; pkill -RTMIN+12 dwmblocks") },
 	//{ MODKEY|ShiftMask,			XK_e,		spawn,	{.v = NULL} },
 
 	{ MODKEY,						XK_r,		spawn,	SHCMD("st -e lf") },
