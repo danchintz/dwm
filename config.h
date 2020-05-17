@@ -285,7 +285,7 @@ static Key keys[] = {
 	//{ MODKEY,						XK_z,		spawn,	{.v = NULL } },
 	//{ MODKEY|ShiftMask,			XK_z,		spawn,	{.v = NULL } },
 
-	{ MODKEY,						XK_x,		spawn,	SHCMD("slock") },
+	{ MODKEY,						XK_x,		spawn,	SHCMD("slock && sudo killall gpg-agent") },
 	{ MODKEY|ShiftMask,	 			XK_x,		spawn,	SHCMD("sudo shutdown now") },
 
 	{ MODKEY,						XK_c,		spawn,	SHCMD("discord") },
