@@ -1004,6 +1004,8 @@ focusstack(const Arg *arg)
 	    i -= ISVISIBLE(c) ? 1 : 0, p = c, c = c->next);
 	focus(c ? c : p);
 	restack(selmon);
+	if(selmon->sel)
+		XWarpPointer(dpy, NULL, selmon->sel->win, 0,0,0,0, selmon->sel->w/2, selmon->sel->h/2);
 }
 
 Atom
@@ -1604,7 +1606,6 @@ run(void)
 
 void
 runAutostart(void) {
-	system("killall -q dwmblocks; dwmblocks &");
 }
 
 void

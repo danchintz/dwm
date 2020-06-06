@@ -20,9 +20,9 @@ static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#770000";
 static char selbgcolor[]            = "#005577";
 static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	/*               fg           bg           border   */
+	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 typedef struct {
@@ -66,14 +66,14 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 #include "vanitygaps.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
- 	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
+	{ "[]=",	tile },			/* Default: Master on left, slaves on right */
 	{ "TTT",	bstack },		/* Master on top, slaves on bottom */
 
 	{ "[@]",	spiral },		/* Fibonacci spiral */
 	{ "[\\]",	dwindle },		/* Decreasing in size right and leftward */
 
 	{ "H[]",	deck },			/* Master on left, slaves in monocle-like mode on right */
- 	{ "[M]",	monocle },		/* All windows on top of eachother */
+	{ "[M]",	monocle },		/* All windows on top of eachother */
 
 	{ "|M|",	centeredmaster },		/* Master in middle, slaves on sides */
 	{ ">M>",	centeredfloatingmaster },	/* Same but master floats */
@@ -85,21 +85,33 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
-	{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
-	{ MOD, XK_v,     ACTION##stack, {.i = 0 } }, \
-	/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
-	/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
-	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
-	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
+{ MOD,	XK_j,	ACTION##stack,	{.i = INC(+1) } }, \
+{ MOD,	XK_k,	ACTION##stack,	{.i = INC(-1) } }, \
+{ MOD, XK_v,     ACTION##stack, {.i = 0 } }, \
+/* { MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \ */
+/* { MOD, XK_a,     ACTION##stack, {.i = 1 } }, \ */
+/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
+/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+void
+resetCols() {
+	//normbgcolor           = "#222222";
+	//normbordercolor       = "#444444";
+	//normfgcolor           = "#bbbbbb";
+	//selfgcolor            = "#eeeeee";
+	//selbordercolor        = "#770000";
+	//selbgcolor            = "#005577";
+	//for (i = 0; i < LENGTH(colors); i++)
+		//scheme[i] = drw_scm_create(drw, colors[i], 3);
+}
 
 void
 exitdwm(const Arg *arg) {
@@ -107,8 +119,7 @@ exitdwm(const Arg *arg) {
 }
 
 void
-changemasterfact(const Arg *arg) {
-	//arg->f = arg->i*.05f;
+changemasterfact(Arg *arg) {
 	setmfact(arg);
 }
 
@@ -120,13 +131,13 @@ changevolume(const Arg *arg) {
 		case -1:
 			//system("pactl set-sink-volume 0 -5%");
 			if(fork() == 0){
-				system("changevolume pulseaudio -5");
+				system("changevolume alsa 5%-");
 				exit(0);
 			}
 			break;
 		case +1:
 			if(fork() == 0){
-				system("changevolume pulseaudio +5");
+				system("changevolume alsa 5%+");
 				exit(0);
 			}
 			//system("pactl set-sink-volume 0 +5%");
@@ -231,7 +242,7 @@ static Key keys[] = {
 	{ MODKEY,						XK_t,		spawn,	SHCMD("st -e watch transmission-remote -l") },
 	//{ MODKEY|ShiftMask,			XK_t,		spawn,	{.v = transmissionwatch} },
 
-	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse") },
+	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse -D ~/.config/calcurse") },
 	//{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
 
 	//{ MODKEY,						XK_u,		spawn,	{.v = NULL} },
@@ -249,7 +260,7 @@ static Key keys[] = {
 
 	//Second Row
 	//{ MODKEY,						XK_a,	spawn,	{.v = pulsemixercmd} },
-	{ MODKEY|ShiftMask,				XK_a,	spawn,	SHCMD("st -e pulsemixer") },
+	{ MODKEY|ShiftMask,				XK_a,	spawn,	SHCMD("st -e alsamixer") },
 
 	{ MODKEY,						XK_s,	togglescratch,		{.ui = 0} },
 	{ MODKEY|ShiftMask,				XK_s,	togglescratch,		{.ui = 1} },
@@ -285,7 +296,7 @@ static Key keys[] = {
 	//{ MODKEY,						XK_z,		spawn,	{.v = NULL } },
 	//{ MODKEY|ShiftMask,			XK_z,		spawn,	{.v = NULL } },
 
-	{ MODKEY,						XK_x,		spawn,	SHCMD("slock && sudo killall gpg-agent") },
+	{ MODKEY,						XK_x,		spawn,	SHCMD("sudo killall gpg-agent; slock; mailsync") },
 	{ MODKEY|ShiftMask,	 			XK_x,		spawn,	SHCMD("sudo shutdown now") },
 
 	{ MODKEY,						XK_c,		spawn,	SHCMD("discord") },
@@ -306,6 +317,10 @@ static Key keys[] = {
 
 
 	//Misc
+
+	{ MODKEY,						XK_equal,	changemasterfact,	{.f = 0.05}},
+	{ MODKEY,						XK_minus,	changemasterfact,	{.f = -0.05}},
+
 
 	{ MODKEY,						XK_grave,	spawn,	SHCMD("dmenuunicode") },
 
