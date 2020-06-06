@@ -331,7 +331,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,				XK_Return,	spawn,	SHCMD("samedir") },
 
 
-	{ MODKEY,						XK_Scroll_Lock,	spawn,	SHCMD("spawnscreenkey") },
+	{ MODKEY,						XK_Scroll_Lock,	spawn,	SHCMD("screenkey") },
 	{ MODKEY,						XK_Delete,	spawn,	SHCMD("showclip") },
 
 	{ MODKEY|ShiftMask,				XK_Escape,	exitdwm,	{ 0 } },
