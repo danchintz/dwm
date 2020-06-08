@@ -131,13 +131,13 @@ changevolume(const Arg *arg) {
 		case -1:
 			//system("pactl set-sink-volume 0 -5%");
 			if(fork() == 0){
-				system("changevolume alsa 5%-");
+				system("changevolume pa -5");
 				exit(0);
 			}
 			break;
 		case +1:
 			if(fork() == 0){
-				system("changevolume alsa 5%+");
+				system("changevolume pa +5");
 				exit(0);
 			}
 			//system("pactl set-sink-volume 0 +5%");
@@ -159,7 +159,6 @@ changevolume(const Arg *arg) {
 			//system("mpc volume +5");
 			break;
 	}
-	system("pkill -RTMIN+11 dwmblocks");
 }
 
 void
@@ -242,13 +241,13 @@ static Key keys[] = {
 	{ MODKEY,						XK_t,		spawn,	SHCMD("st -e watch transmission-remote -l") },
 	//{ MODKEY|ShiftMask,			XK_t,		spawn,	{.v = transmissionwatch} },
 
-	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse -D ~/.config/calcurse") },
+	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse") },
 	//{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
 
 	//{ MODKEY,						XK_u,		spawn,	{.v = NULL} },
 	//{ MODKEY|ShiftMask,			XK_u,		spawn,	{.v = NULL} },
 
-	{ MODKEY,						XK_i,		spawn,	SHCMD("st -e htop") },
+	{ MODKEY,						XK_i,		spawn,	SHCMD("st -e gotop") },
 	//{ MODKEY|ShiftMask,			XK_i,		spawn,	{.v = htopcmd} },
 
 	//{ MODKEY,						XK_o,		incnmaster,	{.i = -1 } },
@@ -260,7 +259,7 @@ static Key keys[] = {
 
 	//Second Row
 	//{ MODKEY,						XK_a,	spawn,	{.v = pulsemixercmd} },
-	{ MODKEY|ShiftMask,				XK_a,	spawn,	SHCMD("st -e alsamixer") },
+	{ MODKEY|ShiftMask,				XK_a,	spawn,	SHCMD("st -e pulsemixer") },
 
 	{ MODKEY,						XK_s,	togglescratch,		{.ui = 0} },
 	{ MODKEY|ShiftMask,				XK_s,	togglescratch,		{.ui = 1} },
