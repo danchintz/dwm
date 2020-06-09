@@ -239,7 +239,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,			XK_r,		spawn,	{.v = LFcmd} },
 
 	{ MODKEY,						XK_t,		spawn,	SHCMD("st -e watch transmission-remote -l") },
-	//{ MODKEY|ShiftMask,			XK_t,		spawn,	{.v = transmissionwatch} },
+	{ MODKEY|ShiftMask,				XK_t,		spawn,	SHCMD("st -e go-twitch-cli") },
 
 	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse") },
 	//{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
