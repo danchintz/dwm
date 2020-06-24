@@ -309,7 +309,7 @@ static Key keys[] = {
 	//{ MODKEY,						XK_b,		spawn,	{.v = NULL} },
 	{ MODKEY|ShiftMask,				XK_b,		togglebar,	{0} },
 
-	{ MODKEY,						XK_n,		spawn,	SHCMD("st -e ncmpcpp")},
+	{ MODKEY,						XK_n,		spawn,	SHCMD("st -e newsboat")},
 	//{ MODKEY|ShiftMask,				XK_n,		nextlayout,	{.i = -1}},
 
 	//{ MODKEY,						XK_m,		spawn,	{.v = ncmpcpp} },
