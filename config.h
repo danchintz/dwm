@@ -115,7 +115,8 @@ resetCols() {
 
 void
 exitdwm(const Arg *arg) {
-	system("pkill -15 Xorg");
+	//quit(arg);
+	system("sudo killall -15 Xorg");
 }
 
 void
@@ -239,8 +240,8 @@ static Key keys[] = {
 	{ MODKEY,						XK_r,		spawn,	SHCMD("st -e lf") },
 	//{ MODKEY|ShiftMask,			XK_r,		spawn,	{.v = LFcmd} },
 
-	{ MODKEY,						XK_t,		spawn,	SHCMD("st -e watch transmission-remote -l") },
-	{ MODKEY|ShiftMask,				XK_t,		spawn,	SHCMD("st -e go-twitch-cli 2>>~/.cache/go-streamlink/log") },
+	{ MODKEY,						XK_t,		spawn,	SHCMD("st -e go-twitch-cli 2>>~/.cache/go-streamlink/log") },
+	{ MODKEY|ShiftMask,				XK_t,		spawn,	SHCMD("st -e watch transmission-remote -l") },
 
 	{ MODKEY,						XK_y,		spawn,	SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse") },
 	//{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
@@ -297,7 +298,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,			XK_z,		spawn,	{.v = NULL } },
 
 	{ MODKEY,	 					XK_x,		spawn,	SHCMD("sudo killall gpg-agent") },
-	{ MODKEY|ShiftMask,				XK_x,		spawn,	SHCMD("sudo killall gpg-agent; slock; mailsync") },
+	{ MODKEY|ShiftMask,				XK_x,		spawn,	SHCMD("sudo killall gpg-agent; slock; mw sync") },
 
 	{ MODKEY,						XK_c,		spawn,	SHCMD("discord") },
 	{ MODKEY|ShiftMask,				XK_c,		spawn,	SHCMD("sudo killall Discord") },
@@ -374,7 +375,7 @@ static Key keys[] = {
 		{ MODKEY,			XK_F5,		xrdb,		{.v = NULL} },
 
 		{ MODKEY,			XK_F7,		spawn,		SHCMD("vpn-toggle") },
-		{ MODKEY,			XK_F8,		spawn,		SHCMD("mailsync") },
+		{ MODKEY,			XK_F8,		spawn,		SHCMD("mw sync") },
 		{ MODKEY,			XK_F11,		spawn,		SHCMD("ducksearch") },
 };
 
