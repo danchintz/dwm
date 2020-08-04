@@ -2561,6 +2561,11 @@ zoom(const Arg *arg)
 		if (!c || !(c = nexttiled(c->next)))
 			return;
 	pop(c);
+	if(selmon->sel){
+		XWarpPointer(dpy, NULL, selmon->sel->win, 0,0,0,0, selmon->sel->w/2, selmon->sel->h/2);
+	}else{
+		XWarpPointer(dpy, None, selmon->barwin, 0, 0, 0, 0, selmon->mw/2, selmon->mh/2);
+	}
 }
 
 int
