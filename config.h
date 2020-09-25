@@ -52,7 +52,8 @@ static const Rule rules[] = {
     {"discord", NULL, "Discord", 1 << 2, 0, 0, 0, -1},
     {"ProtonMail Bridge", "protonmail-bridge", "ProtonMail Bridge", 0, 1, 0, 0, -1},
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
-    {NULL, NULL, "Microsoft Teams Notifications", 0, 1, 0, 0, -1},
+    {NULL, NULL, "Microsoft Teams Notification", 0, 1, 0, 0, -1},
+    {NULL, NULL, "go-twitch-cli", 0, 0, 0, 1, -1},
     {NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
     {NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
 };
@@ -276,10 +277,12 @@ static Key keys[] = {
     //{ MODKEY|ShiftMask,			XK_r,		spawn,	{.v = LFcmd} },
 
     {MODKEY, XK_t, spawn, SHCMD("st -e go-twitch-cli 2>>~/.cache/go-streamlink/log")},
-    {MODKEY | ShiftMask, XK_t, spawn, SHCMD("st -e watch transmission-remote -l")},
+    {MODKEY | ShiftMask, XK_t, spawn, SHCMD("st -e watch tranmission-remote -l")},
 
-    {MODKEY, XK_y, spawn, SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse")},
+    //{MODKEY, XK_y, spawn, SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse")},
     //{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
+    {MODKEY, XK_y, spawn, SHCMD("teams")},
+    {MODKEY | ShiftMask, XK_y, spawn, SHCMD("pkill teams")},
 
     //{ MODKEY,						XK_u,		spawn,	{.v = NULL} },
     //{ MODKEY|ShiftMask,			XK_u,		spawn,	{.v = NULL} },
@@ -292,7 +295,6 @@ static Key keys[] = {
 
     //{ MODKEY,						XK_p,		spawn,	{.v = passmenu} },
     {MODKEY | ShiftMask, XK_p, spawn, SHCMD("passmenu")},
-
 
     // Second Row
     //{ MODKEY,						XK_a,	spawn,	{.v = pulsemixercmd} },
@@ -335,8 +337,8 @@ static Key keys[] = {
     {MODKEY, XK_x, spawn, SHCMD("sudo killall gpg-agent")},
     {MODKEY | ShiftMask, XK_x, spawn, SHCMD("sudo killall gpg-agent; slock; mw sync")},
 
-    {MODKEY, XK_c, spawn, SHCMD("discord")},
-    {MODKEY | ShiftMask, XK_c, spawn, SHCMD("sudo killall Discord")},
+    {MODKEY, XK_c, spawn, SHCMD("discord-canary")},
+    {MODKEY | ShiftMask, XK_c, spawn, SHCMD("sudo killall DiscordCanary")},
 
     // Unused
     //{ MODKEY,						XK_v,		spawn,	{.v = NULL} },
@@ -348,8 +350,28 @@ static Key keys[] = {
     {MODKEY, XK_n, spawn, SHCMD("st -e newsboat")},
     //{ MODKEY|ShiftMask,				XK_n,		nextlayout,	{.i = -1}},
 
-    //{ MODKEY,						XK_m,		spawn,	{.v = ncmpcpp} },
-    {MODKEY | ShiftMask, XK_m, spawn, SHCMD("st -e lf /Media")},
+    // Side mouse button
+    {0,
+     XK_KP_0,
+     spawn,
+     SHCMD(
+         "pulsemixer --id $(pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//g') --toggle-mute; "
+         "pkill -RTMIN+11 $STATUSBAR")},
+    {ShiftMask,
+     XK_KP_0,
+     spawn,
+     SHCMD("pulsemixer --id $(pulsemixer --list-sinks | grep Default | awk '{print $3}' | sed 's/,//g') --toggle-mute; "
+           "pkill -RTMIN+11 $STATUSBAR")},
+    //{MODKEY,
+    // XK_m,
+    // spawn,
+    // SHCMD("pulsemixer --id $(pulsemixer --list-sinks | grep Default | awk '{print $3}' | sed 's/,//g') --toggle-mute;
+    // " "pkill -RTMIN+11 $STATUSBAR")},
+    //{MODKEY | ShiftMask,
+    // XK_m,
+    // spawn,
+    // SHCMD("pulsemixer --id $(pulsemixer --list-sources | grep Default | awk '{print $3}' | sed 's/,//g') "
+    //"--toggle-mute; pkill -RTMIN+11 $STATUSBAR")},
 
 
     // Misc
