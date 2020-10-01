@@ -54,6 +54,7 @@ static const Rule rules[] = {
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
     {NULL, NULL, "Microsoft Teams Notification", 0, 1, 0, 0, -1},
     {NULL, NULL, "go-twitch-cli", 0, 0, 0, 1, -1},
+    {NULL, NULL, "newsboat", 0, 0, 0, 1, -1},
     {NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
     {NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
 };
