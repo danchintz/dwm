@@ -46,16 +46,17 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class      instance    title       tags mask     isfloating   monitor */
-    {"Steam", "Steam", NULL, 1 << 4, 0, 0, 0, 0},
-    {"dota2", "dota2", NULL, 1 << 5, 0, 0, 0, 0},
-    {"discord", NULL, "Discord", 1 << 2, 0, 0, 0, -1},
-    {"ProtonMail Bridge", "protonmail-bridge", "ProtonMail Bridge", 0, 1, 0, 0, -1},
-    {"St", NULL, NULL, 0, 0, 1, 0, -1},
-    {NULL, NULL, "Microsoft Teams Notification", 0, 1, 0, 0, -1},
-    {NULL, NULL, "go-twitch-cli", 0, 0, 0, 1, -1},
-    {NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
-    {NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
+    /* class      instance    title       tags mask     isfloating   canfocus   monitor */
+    {"Steam", "Steam", NULL, 1 << 4, 0, 0, 0, 1, 0},
+    {"dota2", "dota2", NULL, 1 << 5, 0, 0, 0, 1, 0},
+    {"discord", NULL, "Discord", 1 << 2, 0, 0, 0, 1, -1},
+    {"ProtonMail Bridge", "protonmail-bridge", "ProtonMail Bridge", 0, 1, 0, 0, 1, -1},
+    {"St", NULL, NULL, 0, 0, 1, 0, 1, -1},
+    {NULL, NULL, "Microsoft Teams Notification", 0, 1, 0, 0, 0, -1},
+
+    {NULL, NULL, "go-twitch-cli", 0, 0, 0, 1, 1, -1},
+    {NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, 1, -1},
+    {NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, 1, -1},
 };
 
 
@@ -425,6 +426,7 @@ static Key keys[] = {
     {MODKEY, XK_F5, xrdb, {.v = NULL}},
 
     {MODKEY, XK_F7, spawn, SHCMD("vpn-toggle")},
+    {MODKEY | ShiftMask, XK_F7, spawn, SHCMD("stopvpn; st -e sudo openvpn ~/dox/work/dhintz.ovpn")},
     {MODKEY, XK_F8, spawn, SHCMD("mw sync")},
     {MODKEY, XK_F11, spawn, SHCMD("ducksearch")},
 };
