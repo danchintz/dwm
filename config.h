@@ -400,15 +400,6 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_Print, spawn, SHCMD("dmenurecord kill")},
 
 
-    // Media Keys
-    {MODKEY | ShiftMask, XK_Page_Up, changevolume, {.i = +2}},
-    {MODKEY | ShiftMask, XK_Page_Down, changevolume, {.i = -2}},
-    {MODKEY, XK_Page_Up, changevolume, {.i = +1}},
-    {MODKEY, XK_Page_Down, changevolume, {.i = -1}},
-
-    {0, XF86XK_MonBrightnessUp, spawn, SHCMD("xbacklight +5")},
-    {0, XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -5")},
-
     //{ MODKEY,						XK_Insert,	spawn,	{.v = mpctoggle } },
     //{ MODKEY|ShiftMask,				XK_Insert,	spawn,	{.v = mpcstop} },
     //{ MODKEY,						XK_Home,	spawn,	{.v = mpcnext} },
@@ -429,6 +420,16 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_F7, spawn, SHCMD("stopvpn; st -e sudo openvpn ~/dox/work/dhintz.ovpn")},
     {MODKEY, XK_F8, spawn, SHCMD("mw sync")},
     {MODKEY, XK_F11, spawn, SHCMD("ducksearch")},
+
+    {0, XF86XK_MonBrightnessUp, spawn, SHCMD("xbacklight +5")},
+    {0, XF86XK_MonBrightnessDown, spawn, SHCMD("xbacklight -5")},
+
+    {0, XF86XK_AudioPlay, spawn, SHCMD("mpc toggle")},
+    {0, XF86XK_AudioNext, spawn, SHCMD("mpc next")},
+    {0, XF86XK_AudioPrev, spawn, SHCMD("mpc prev")},
+    {0, XF86XK_AudioStop, spawn, SHCMD("mpc stop")},
+    {0, XF86XK_AudioRaiseVolume, changevolume, {.i = +1}},
+    {0, XF86XK_AudioLowerVolume, changevolume, {.i = -1}},
 };
 
 /* button definitions */
@@ -446,8 +447,6 @@ static Button buttons[] = {
     {ClkClientWin, MODKEY, Button1, movemouse, {0}},
     {ClkClientWin, MODKEY, Button2, defaultgaps, {0}},
     {ClkClientWin, MODKEY, Button3, resizemouse, {0}},
-    {ClkClientWin, MODKEY, Button4, incrgaps, {.i = +1}},
-    {ClkClientWin, MODKEY, Button5, incrgaps, {.i = -1}},
     {ClkTagBar, 0, Button1, view, {0}},
     {ClkTagBar, 0, Button3, toggleview, {0}},
     {ClkTagBar, MODKEY, Button1, tag, {0}},
