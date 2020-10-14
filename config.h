@@ -278,7 +278,7 @@ static Key keys[] = {
     //{ MODKEY|ShiftMask,			XK_r,		spawn,	{.v = LFcmd} },
 
     {MODKEY, XK_t, spawn, SHCMD("st -e go-twitch-cli 2>>~/.cache/go-streamlink/log")},
-    {MODKEY | ShiftMask, XK_t, spawn, SHCMD("st -e watch tranmission-remote -l")},
+    {MODKEY | ShiftMask, XK_t, spawn, SHCMD("st -e watch transmission-remote -l")},
 
     //{MODKEY, XK_y, spawn, SHCMD("st -e calcurse -D ~/.local/share/calcurse -C ~/.config/calcurse")},
     //{ MODKEY|ShiftMask,			XK_y,		spawn,	{.v = calcurse} },
@@ -298,8 +298,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_p, spawn, SHCMD("passmenu")},
 
     // Second Row
-    //{ MODKEY,						XK_a,	spawn,	{.v = pulsemixercmd} },
-    {MODKEY | ShiftMask, XK_a, spawn, SHCMD("st -e pulsemixer")},
+    //{ MODKEY|ShiftMask,						XK_a,	spawn,	{.v = pulsemixercmd} },
+    {MODKEY, XK_a, spawn, SHCMD("st -e pulsemixer")},
 
     {MODKEY, XK_s, togglescratch, {.ui = 0}},
     {MODKEY | ShiftMask, XK_s, togglescratch, {.ui = 1}},
@@ -336,7 +336,7 @@ static Key keys[] = {
     //{ MODKEY|ShiftMask,			XK_z,		spawn,	{.v = NULL } },
 
     {MODKEY, XK_x, spawn, SHCMD("sudo killall gpg-agent")},
-    {MODKEY | ShiftMask, XK_x, spawn, SHCMD("sudo killall gpg-agent; slock; mw sync")},
+    {MODKEY | ShiftMask, XK_x, spawn, SHCMD("sudo killall gpg-agent; slock; mw -Y")},
 
     {MODKEY, XK_c, spawn, SHCMD("discord-canary")},
     {MODKEY | ShiftMask, XK_c, spawn, SHCMD("sudo killall DiscordCanary")},
@@ -418,7 +418,7 @@ static Key keys[] = {
 
     {MODKEY, XK_F7, spawn, SHCMD("vpn-toggle")},
     {MODKEY | ShiftMask, XK_F7, spawn, SHCMD("stopvpn; st -e sudo openvpn ~/dox/work/dhintz.ovpn")},
-    {MODKEY, XK_F8, spawn, SHCMD("mw sync")},
+    {MODKEY, XK_F8, spawn, SHCMD("mw -Y")},
     {MODKEY, XK_F11, spawn, SHCMD("ducksearch")},
 
     {0, XF86XK_MonBrightnessUp, spawn, SHCMD("xbacklight +5")},
