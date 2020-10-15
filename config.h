@@ -202,12 +202,17 @@ void movetomon(const Arg* arg)
     {
         if (i == arg->ui)
         {
+            char isfull = selmon->sel->isfullscreen;
+            if (isfull)
+                setfullscreen(selmon->sel, 0);
             sendmon(selmon->sel, m);
             unfocus(selmon->sel, 0);
             selmon = m;
             focus(NULL);
             XWarpPointer(dpy, NULL, selmon->sel->win, 0, 0, 0, 0, selmon->sel->w / 2, selmon->sel->h / 2);
             arrange(selmon);
+            if (isfull)
+                setfullscreen(selmon->sel, 1);
             break;
         }
     }
