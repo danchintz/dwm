@@ -299,11 +299,11 @@ static Key keys[] = {
     //{ MODKEY,						XK_o,		incnmaster,	{.i = -1 } },
     {MODKEY | ShiftMask, XK_o, incnmaster, {.i = -1}},
 
-    //{ MODKEY,						XK_p,		spawn,	{.v = passmenu} },
+    {MODKEY, XK_p, spawn, SHCMD("st -e playground")},
     {MODKEY | ShiftMask, XK_p, spawn, SHCMD("passmenu")},
 
     // Second Row
-    //{ MODKEY|ShiftMask,						XK_a,	spawn,	{.v = pulsemixercmd} },
+    {MODKEY | ShiftMask, XK_a, spawn, SHCMD("authy")},
     {MODKEY, XK_a, spawn, SHCMD("st -e pulsemixer")},
 
     {MODKEY, XK_s, togglescratch, {.ui = 0}},
@@ -448,7 +448,7 @@ static Button buttons[] = {
     {ClkStatusText, 0, Button4, sigdwmblocks, {.i = 4}},
     {ClkStatusText, 0, Button5, sigdwmblocks, {.i = 5}},
     {ClkStatusText, ShiftMask, Button1, sigdwmblocks, {.i = 6}},
-    {ClkStatusText, ShiftMask, Button3, spawn, SHCMD("st -e nvim /opt/dwmblocks/config.h")},
+    {ClkStatusText, ShiftMask, Button3, spawn, SHCMD("st -e nvim ~/.local/share/dwmblocks/config.h")},
     {ClkClientWin, MODKEY, Button1, movemouse, {0}},
     {ClkClientWin, MODKEY, Button2, defaultgaps, {0}},
     {ClkClientWin, MODKEY, Button3, resizemouse, {0}},
